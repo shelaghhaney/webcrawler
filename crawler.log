@@ -1,0 +1,22 @@
+2026/05/14 19:10:05.269164 [main] starting crawl of 10 URLs with parallelism=5
+2026/05/14 19:10:05.269405 [crawler] visiting https://en.wikipedia.org/wiki/Robot_Operating_System
+2026/05/14 19:10:05.269399 [crawler] visiting https://en.wikipedia.org/wiki/Android_(robot)
+2026/05/14 19:10:05.269608 [crawler] visiting https://en.wikipedia.org/wiki/Robot
+2026/05/14 19:10:05.269668 [crawler] visiting https://en.wikipedia.org/wiki/Robotic_process_automation
+2026/05/14 19:10:05.269707 [crawler] visiting https://en.wikipedia.org/wiki/Applications_of_artificial_intelligence
+2026/05/14 19:10:05.269713 [crawler] visiting https://en.wikipedia.org/wiki/Intelligent_agent
+2026/05/14 19:10:05.269730 [crawler] visiting https://en.wikipedia.org/wiki/Robotics
+2026/05/14 19:10:05.269719 [crawler] visiting https://en.wikipedia.org/wiki/Reinforcement_learning
+2026/05/14 19:10:05.269729 [crawler] visiting https://en.wikipedia.org/wiki/Software_agent
+2026/05/14 19:10:05.269801 [crawler] visiting https://en.wikipedia.org/wiki/Chatbot
+2026/05/14 19:10:06.009574 [crawler] scraped "Robotic process automation" – 24 paragraphs
+2026/05/14 19:10:06.077218 [crawler] scraped "Robot" – 134 paragraphs
+2026/05/14 19:10:06.093169 [crawler] scraped "Android (robot)" – 30 paragraphs
+2026/05/14 19:10:06.095170 [crawler] scraped "Robot Operating System" – 32 paragraphs
+2026/05/14 19:10:06.214918 [crawler] scraped "Applications of artificial intelligence" – 152 paragraphs
+2026/05/14 19:10:06.575179 [crawler] scraped "Intelligent agent" – 53 paragraphs
+2026/05/14 19:10:06.625843 [crawler] scraped "Robotics" – 52 paragraphs
+2026/05/14 19:10:06.632830 [crawler] scraped "Software agent" – 30 paragraphs
+2026/05/14 19:10:06.639879 [crawler] scraped "Reinforcement learning" – 87 paragraphs
+2026/05/14 19:10:06.748312 [crawler] scraped "Chatbot" – 55 paragraphs
+2026/05/14 19:10:06.749679 [main] complete – 10 pages scraped in 1.479249167s
