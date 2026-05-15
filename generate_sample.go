@@ -1,0 +1,126 @@
+//go:build ignore
+
+// generate_sample.go writes a representative results.jl file using known
+// Wikipedia article summaries.  Run with: go run generate_sample.go
+package main
+
+import (
+	"encoding/json"
+	"log"
+	"os"
+)
+
+type Page struct {
+	URL   string `json:"url"`
+	Title string `json:"title"`
+	Body  string `json:"body"`
+}
+
+func main() {
+	pages := []Page{
+		{
+			URL:   "https://en.wikipedia.org/wiki/Robotics",
+			Title: "Robotics",
+			Body: `Robotics is an interdisciplinary branch of computer science and engineering. Robotics involves the design, construction, operation, and use of robots. The goal of robotics is to design machines that can help and assist humans. Robotics integrates fields of mechanical engineering, electrical engineering, information engineering, mechatronics engineering, electronics, biomedical engineering, computer engineering, control systems engineering, software engineering, mathematics, among others.
+
+Robotics develops machines that can substitute for humans and replicate human actions. Robots can be used in many situations and for many purposes, but today many are used in dangerous environments (including inspection of radioactive materials, bomb detection and deactivation), manufacturing processes, or where humans cannot survive (e.g. in space, underwater, in high heat, and clean up and containment of hazardous materials and radiation). Robots can take any form, but some are made to resemble humans in appearance.
+
+The concept of creating machines that can operate autonomously dates back to classical times, but research into the functionality and potential uses of robots did not grow substantially until the 20th century. Throughout history, robotics has been often seen to mimic human behavior and manage tasks that were seen as too dirty, dangerous, or dull to be suitable for humans.`,
+		},
+		{
+			URL:   "https://en.wikipedia.org/wiki/Robot",
+			Title: "Robot",
+			Body: `A robot is a machine—especially one programmable by a computer—capable of carrying out a complex series of actions automatically. A robot can be guided by an external control device, or the control may be embedded within. Robots may be constructed to evoke human form, but most robots are task-performing machines, designed with an emphasis on stark functionality, rather than expressive aesthetics.
+
+Robots can be autonomous or semi-autonomous and range from humanoids such as Honda's Advanced Step in Innovative Mobility (ASIMO) and TOSY's TOSY Ping Pong Playing Robot (TOPIO) to industrial robots, medical operating robots, patient assist robots, dog therapy robots, collectively programmed swarm robots, UAV drones such as General Atomics MQ-1 Predator, and even microscopic nano robots.
+
+The branch of technology that deals with the design, construction, operation, and application of robots is robotics. The word robot was introduced to the public by the Czech writer Karel Čapek in his play R.U.R. (Rossum's Universal Robots), published in 1920. The word itself was not invented by Čapek, but was suggested by his brother Josef Čapek.`,
+		},
+		{
+			URL:   "https://en.wikipedia.org/wiki/Reinforcement_learning",
+			Title: "Reinforcement learning",
+			Body: `Reinforcement learning (RL) is an interdisciplinary area of machine learning and optimal control concerned with how an intelligent agent ought to take actions in a dynamic environment in order to maximize the cumulative reward. Reinforcement learning is one of the three basic machine learning paradigms, alongside supervised learning and unsupervised learning.
+
+Reinforcement learning differs from supervised learning in not needing labelled input/output pairs to be presented, and in not needing sub-optimal actions to be explicitly corrected. Instead the focus is on finding a balance between exploration (of uncharted territory) and exploitation (of current knowledge) with the goal of maximizing long-term reward.
+
+The environment is typically stated in the form of a Markov decision process (MDP), because many reinforcement learning algorithms for this context use dynamic programming techniques. The main difference between the classical dynamic programming methods and reinforcement learning algorithms is that the latter do not assume knowledge of an exact mathematical model of the MDP and they target large MDPs where exact methods become infeasible.`,
+		},
+		{
+			URL:   "https://en.wikipedia.org/wiki/Robot_Operating_System",
+			Title: "Robot Operating System",
+			Body: `Robot Operating System (ROS or ros) is an open-source robotics middleware suite. Although ROS is not an operating system (OS) but a set of software frameworks for robot software development, it provides services designed for a heterogeneous computer cluster such as hardware abstraction, low-level device control, implementation of commonly used functionality, message-passing between processes, and package management.
+
+Running sets of ROS-based processes are represented in a graph architecture where processing takes place in nodes that may receive, post and multiplex sensor data, control, state, planning, actuator, and other messages. Despite the importance of reactivity and low latency in robot control, ROS itself is not a real-time OS (RTOS). It is possible, however, to integrate ROS with real-time computing.
+
+The software is mainly tested on Ubuntu and macOS systems, though the Windows port is experimental. The ROS package management system is called catkin. ROS is released under a BSD open-source license.`,
+		},
+		{
+			URL:   "https://en.wikipedia.org/wiki/Intelligent_agent",
+			Title: "Intelligent agent",
+			Body: `In artificial intelligence, an intelligent agent (IA) is an agent acting in an intelligent manner. It perceives its environment, takes actions autonomously in order to achieve goals, and may improve its performance with learning or acquiring knowledge. An intelligent agent may be simple or complex: a thermostat or other control system is considered an example of an intelligent agent, as is a human being, as is any system that meets the definition, such as a firm, a state, or a biome.
+
+Leading AI textbooks define "artificial intelligence" as the "study and design of intelligent agents", a definition that considers goal-directed behavior to be the essence of intelligence. Goal-directed agents are also described using a term borrowed from economics, "rational agent".
+
+An agent has an agent function which maps every possible percepts sequence to a possible action the agent can perform or a coefficient, feedback element, function or constant that affects eventual actions. An agent that is capable enough to satisfy all desiderata is called an autonomous agent.`,
+		},
+		{
+			URL:   "https://en.wikipedia.org/wiki/Software_agent",
+			Title: "Software agent",
+			Body: `In computer science, a software agent or software bot is a computer program that acts for a user or other program in a relationship of agency, which derives from the Latin actus, a legal term for performing tasks on behalf of another. Such "action on behalf of another" implies the authority to decide which, if any, action is appropriate. Software agents may be autonomous or work together with other agents or people.
+
+Software agents may be embodied (as in robotics) or virtual. A software agent is a piece of software that acts autonomously (without being directly instructed by a user) to perform or assist in performing tasks on behalf of a user. The degree to which a software agent independently pursues goals typically varies greatly depending on the agent design.
+
+Agents can be programmed with various degrees of autonomy and can be designed to interact with the environment in many different ways, including user interfaces, application programming interfaces (APIs), and other digital channels.`,
+		},
+		{
+			URL:   "https://en.wikipedia.org/wiki/Robotic_process_automation",
+			Title: "Robotic process automation",
+			Body: `Robotic process automation (RPA) is a form of business process automation that is based on the use of software robots (bots) or artificial intelligence (AI) agents. It is also sometimes referred to as software robotics (not to be confused with robot software).
+
+In traditional workflow automation tools, a software developer produces a list of actions to automate a task and interface to the back end system using internal application programming interfaces (APIs) or dedicated scripting language. In contrast, RPA systems develop the action list by watching the user perform that task in the application's graphical user interface (GUI), and then perform the automation by repeating those tasks directly in the GUI.
+
+This can lower the barrier to use of automation in products that might not otherwise feature APIs for this purpose. RPA tools have strong technical similarities to graphical user interface testing tools. These tools also automate interactions with the GUI, and often do so by repeating a set of demonstration actions performed by a user.`,
+		},
+		{
+			URL:   "https://en.wikipedia.org/wiki/Chatbot",
+			Title: "Chatbot",
+			Body: `A chatbot (originally chatterbot) is a software application or web interface designed to simulate human conversation with users. Modern chatbots are typically online and use generative artificial intelligence systems that are capable of maintaining a conversation with a user in natural language and simulating the way a human would behave as a conversational partner.
+
+Such chatbots often use deep learning and natural language processing, but simpler chatbots have existed for decades. Although chatbots have long been studied in the context of customer service and information acquisition, many modern chatbots are used in areas including education, entertainment, and therapy.
+
+The term "ChatterBot" was coined by Michael Mauldin (creator of the first Verbot, Julia) in 1994 to describe these conversational programs. Today, most chatbots operate on the internet through websites or messaging applications. They can engage in conversation with users, answer questions, provide recommendations, and perform various tasks.`,
+		},
+		{
+			URL:   "https://en.wikipedia.org/wiki/Applications_of_artificial_intelligence",
+			Title: "Applications of artificial intelligence",
+			Body: `Artificial intelligence (AI) has been used in applications throughout industry and academia. Similar to electricity or computers, AI serves as a general-purpose technology that is used to improve operations within many different industries, such as finance, healthcare, manufacturing, transportation, and education.
+
+AI applications include advanced web search engines (e.g., Google Search), recommendation systems (used by YouTube, Amazon, and Netflix), understanding human speech (such as Siri and Alexa), self-driving cars (e.g., Waymo), generative and creative tools (ChatGPT and AI art), automated decision-making, and competing at the highest level in strategic game systems (such as chess and Go).
+
+AI is used extensively in healthcare for medical diagnosis, drug discovery, and robotic surgery. Machine learning algorithms can analyze medical images and detect patterns that may be difficult for human doctors to identify, often with high levels of accuracy.`,
+		},
+		{
+			URL:   "https://en.wikipedia.org/wiki/Android_(robot)",
+			Title: "Android (robot)",
+			Body: `An android is a humanoid robot or other artificial being often made from a flesh-like material. The word derives from the Ancient Greek prefix andro- (meaning "man, male") and the suffix -eides (meaning "of the species or alike"). The term droid, a portmanteau of android, was coined by George Lucas and used in the Star Wars universe.
+
+Historically, androids were completely within the domain of science fiction and were frequently seen in films and television as human-like robots. The technology required to create convincing androids is still largely beyond current technical capability. However, some humanoid robots are now being developed.
+
+Androids appear frequently in science fiction. The word "android" means literally "human-like," and this has led to them being constructed with the human form. A famous early depiction of androids is in the work Metropolis. The concept of androids raises philosophical questions about the nature of humanity and the ethical treatment of sophisticated artificial beings.`,
+		},
+	}
+
+	f, err := os.Create("results.jl")
+	if err != nil {
+		log.Fatalf("cannot create results.jl: %v", err)
+	}
+	defer f.Close()
+
+	enc := json.NewEncoder(f)
+	for _, p := range pages {
+		if err := enc.Encode(p); err != nil {
+			log.Fatalf("encoding %q: %v", p.URL, err)
+		}
+	}
+	log.Printf("wrote %d pages to results.jl", len(pages))
+}
